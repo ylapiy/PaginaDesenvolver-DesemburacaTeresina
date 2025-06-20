@@ -13,7 +13,7 @@ fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/regi
           <td>${registro.rua}</td>
           <td>${registro.bairro}</td>
 
-          <button onclick=DeletBancoDeDados(registro.fid)>Excluir</button>
+          <button onclick="DeletBancoDeDados(registro.fid)">Excluir</button>
           <button>Editar</button>
 
         
@@ -21,9 +21,6 @@ fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/regi
         </tr>
       `;
       tbody.innerHTML += linha;
-      document.getElementById('excluir').addEventListener('click', ()=>{
-         DeletBancoDeDados(registro.fid)
-      })
     });
   });
 
