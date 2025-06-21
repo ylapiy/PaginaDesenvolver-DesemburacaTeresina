@@ -24,11 +24,17 @@ fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/regi
           '${registro.rua}',
           '${registro.bairro}'
           )" class="botaobonito" >Editar</button>
+
+          <a href=# data-nome=${registro.imagem} target="_blank" class="botaobonito link-foto">Foto</a>
           </div>
 
         </tr>
       `;
       tbody.innerHTML += linha;
+    });
+    document.querySelectorAll('.link-foto').forEach(link => {
+      const nome = link.getAttribute('data-nome');
+      link.href = "https://drive.google.com/drive/u/2/search?q="+nome
     });
   });
 
@@ -100,3 +106,4 @@ fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/regi
     return NovaData
 
   }
+  
