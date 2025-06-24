@@ -1,4 +1,7 @@
-fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/registro') 
+const url = 'https://projetodesemburacateresinaapi-production-1abf.up.railway.app'
+
+
+fetch(url+'/registro') 
   .then(response => response.json())
   .then(data => {
     const tbody = document.querySelector("#tabelaDenuncias tbody");
@@ -40,7 +43,7 @@ fetch('https://projetodesemburacateresinaapi-production-1abf.up.railway.app/regi
 
   async function DeletBancoDeDados(id){
 
-    fetch(`https://projetodesemburacateresinaapi-production-1abf.up.railway.app/registro/${id}`, {method:'DELETE'})
+    fetch(url+`/registro/${id}`, {method:'DELETE'})
     .then(response => response.json())
     .then(data =>{
       console.log(data)
