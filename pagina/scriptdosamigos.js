@@ -1,6 +1,5 @@
 const url = 'https://projetodesemburacateresinaapi-production-1abf.up.railway.app'
 
-
 fetch(url+'/registro') 
   .then(response => response.json())
   .then(data => {
@@ -12,12 +11,14 @@ fetch(url+'/registro')
           <td>${registro.data}</td>
           <td>${registro.categoria}</td>
           <td>${registro.status}</td>
-          <td>${registro.observacao}</td>
+          <td id="obs">${registro.observacao}</td>
           <td>${registro.rua}</td>
           <td>${registro.bairro}</td>
+          <td>${registro.latitude}</td>
+          <td>${registro.longitude}</td>
 
           <div class="divbotoes">
-          <button onclick="DeletBancoDeDados(${registro.fid})" class="botaobonito">Excluir</button>
+          <button onclick="DeletBancoDeDados(${registro.fid});" class="botaobonito">Excluir</button>
           <button onclick="HoraDeMudar(
            ${registro.fid},
           '${registro.data}',
@@ -26,19 +27,15 @@ fetch(url+'/registro')
            ${registro.fid},
           '${registro.rua}',
           '${registro.bairro}'
-          )" class="botaobonito" >Editar</button>
+          )" class="botaobonito">Editar</button>
 
           <a href=# data-nome=${registro.imagem} target="_blank" class="botaobonito link-foto">Foto</a>
           </div>
-
         </tr>
       `;
       tbody.innerHTML += linha;
     });
-    document.querySelectorAll('.link-foto').forEach(link => {
-      const nome = link.getAttribute('data-nome');
-      link.href = "https://drive.google.com/drive/u/2/search?q="+nome
-    });
+    AbrirFoto();
   });
 
   async function DeletBancoDeDados(id){
@@ -51,6 +48,13 @@ fetch(url+'/registro')
 
     })
   
+  }
+
+  function AbrirFoto(){
+    document.querySelectorAll('.link-foto').forEach(link => {
+      const nome = link.getAttribute('data-nome');
+      link.href = "https://drive.google.com/drive/u/2/search?q="+nome
+    });
   }
 
   function HoraDeMudar(id,data,categoria,status,observacao,rua,bairro){
@@ -77,7 +81,6 @@ fetch(url+'/registro')
     document.getElementById('salvar').addEventListener("click", () =>{MudarBancoDeDados(id,campos[0].value,campos[1].value,campos[2].value,campos[3].value,campos[4].value, campos[5].value)})
 
   }
-
 
   async function MudarBancoDeDados(id,data,categoria,status,observacao,rua,bairro) {
   
@@ -108,5 +111,7 @@ fetch(url+'/registro')
     console.log(NovaData)
     return NovaData
 
+  
   }
+  
   
